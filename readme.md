@@ -1,7 +1,8 @@
 
 
 ## WHY:                         
-<img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="300" height="300" />
+<img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="300" height="250" />
+
     - performance
     - shorter initial load time
     - fr3e eD1cTs!
@@ -16,7 +17,7 @@
         [optional] CompilePalX           - Easy compile and precompiling
                 https://github.com/ruarai/CompilePal/releases/tag/v027.30
         [optional] Plugin for CompilePal - Easy precompiling
-
+                included in this repo
         Copy the DynEnter directory to your nmrih/bin directory
         Copy the parameters directory to your nmrih/bin directory
 
