@@ -3,7 +3,7 @@
     It also creates a copy of your vmf, removes the found entities, and feeds this precompiled vmf to vbsp for full compilation.
 
 ## WHY:                         
-<img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="300" height="250" />
+<img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="300" height="230" />
 
     - performance
     - shorter initial load time
@@ -30,7 +30,7 @@
     Make cordons around areas you want to have entities be dynamically loaded.
         It is not mandatory to cordon everything. Un-marked areas are simply skipped in the precompiler and will load at map start.
     Name these cordons something descriptive and give their name the prefix 'DynEnter_',   to mark them for the dynamic spawner.
-<img src="images/setup_overlord.png" data-canonical-src="images/setup_overlord.png" width="600" height="400" />
+<img src="images/setup_overlord.png" data-canonical-src="images/setup_overlord.png" width="600" height="350" />
     Place a script_logic somewhere in your map. Create a new keyvalue (disable smartedit, press add) with name 'vscripts' value 'DyntEnter/<mapname>/DynEnter_overlord.nut'
     mapname will be the second word/title in your map's filename:
         eg: nmo_newyork_v21 would be newyork
@@ -57,3 +57,9 @@
         entities being loaded in. If nothing happens check if the paths in the trigger output are correct.
 
 <img src="images/demo.gif" data-canonical-src="images/demo.gif" width="600" height="400" />
+
+
+
+Some last things worth noting are: 
+    You can destroy the entities in the area by calling DestroyEnts_<areaname>() on the DynEnter_overlord entity.
+    Open vscripts/DynEnter/<mapname>/DynEnter_overlord.nut , for a list of the generated VScript entities
