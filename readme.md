@@ -69,5 +69,5 @@
 
 
 Some last things worth noting are: 
-    You can destroy the entities in the area by calling DestroyEnts_<areaname>() on the DynEnter_overlord entity.
+    You can destroy the entities in the area by calling DestroyEnts_areaname() on the DynEnter_overlord entity.
     Open vscripts/DynEnter/<mapname>/DynEnter_overlord.nut , for a list of the generated VScript entities
