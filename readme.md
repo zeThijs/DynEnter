@@ -2,7 +2,8 @@
     This script searches through cordons you define, and automatically creates 
         VScript spawn functions for them. 
     These function may then be used to dynamically spawn or despawn dynamic entities in your source map.
-    It also creates a copy of your vmf, removes the found entities, and feeds this precompiled vmf to vbsp for full compilation.
+    It also creates a copy of your vmf, removes the found entities, and feeds this precompiled vmf 
+        to vbsp for full compilation.
 
 ## WHY:                         
 <img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="300" height="230" />
@@ -14,8 +15,10 @@
     Source has low limits when it comes to dynamic entities count. 
     If one can have dynamic entities unloaded, and load them at points on the map where 
         they are needed you can circumvent these limits. 
-    Another benefit is potential performance increases, for clients as well as for servers and shorter initial loading times.
-    One negative is possible lag from ingame loading of assets, as i havent implemented precaching as an option yet.
+    Another benefit is potential performance increases, for clients as well as for servers 
+        and shorter initial loading times.
+    One negative is possible lag from ingame loading of assets, 
+        as i havent implemented precaching at mapload as an option yet.
 
 
 ## HOWTO use:
@@ -43,7 +46,8 @@
         eg: nmo_newyork_v21 would be newyork
 <img src="images/setup_trigger.png" data-canonical-src="images/setup_trigger.png" width="600" height="400" />
 
-    In transitions betweens map areas, such as corridors or elevators, create a trigger. Have it output the following:
+    In transitions betweens map areas, such as corridors or elevators, create a trigger. 
+    Have it output the following:
     OnTrigger DynEnter_Overlord StartAreaSpawn_<areaname>()
     areaname will be the descriptive cordon name you have made earlier, without the prefix:
         eg: dynspawn_garage would be garage
