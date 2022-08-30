@@ -1,6 +1,7 @@
 
 
-## WHY:                         <img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="100" height="100" />
+## WHY:                         
+<img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="300" height="300" />
     - performance
     - shorter initial load time
     - fr3e eD1cTs!
@@ -36,7 +37,7 @@
         eg: dynspawn_garage would be garage
 
 ### 3.  Run precompiler, and compile map
-<img src="images/setupplug1.png" data-canonical-src="images/setupplug1.png" width="400" height="300" /><img src="images/setupplug2.png" data-canonical-src="images/setupplug2.png" width="400" height="300" />
+<img src="images/setupplug1.png" data-canonical-src="images/setupplug1.png" width="200" height="300" /><img src="images/setupplug2.png" data-canonical-src="images/setupplug2.png" width="200" height="300" />
         Use the provided CompilePalX plug-in in the compile steps -before- vbsp. It 
         launches DynEnter precompiler which creates a new vmf with entities in areas removed. The entity data is stored into vscript scripts which may later be called ingame to load the entities. The modified vmf is then passed into vbsp and the compilation is continued.
 
