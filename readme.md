@@ -7,7 +7,7 @@
 
     - performance
     - shorter initial load time
-    - fr3e eD1cTs!
+    - free edicts!
 
     Source has low limits when it comes to dynamic entities count. If one can have dynamic entities unloaded, and load them at points on the map where they are needed you can circumvent these limits. Another benefit is potential performance increases, for clients as well as for servers and shorter initial loading times.
 
@@ -22,6 +22,8 @@
                 included in this repo
         Copy the DynEnter directory to your nmrih/bin directory
         Copy the parameters directory to your nmrih/bin directory
+
+        -requires Python >= 3.3 : https://www.python.org/downloads/
 
 ### 2.  Setup the VMF
 <img src="images/cordoning.jpg" data-canonical-src="images/cordoning.jpg" width="600" height="400" />
