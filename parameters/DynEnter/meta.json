@@ -1,0 +1,10 @@
+{
+    "Name": "DynSpawn",
+    "Description": "Dynamically spawn entities into source games. This step precompiles a copy of the vmf.",
+    "Warning": "Currently known to be compatible with nmrih. Will likely be compatible with other vscript enabled games.",
+    "Path": "py",
+	"Arguments": " $binFolder$/DynEnter/DynEnter.py $vmfFile$",
+    "Order": "0.5",
+    "DoRun": "true",
+    "ReadOutput": "true"
+}
