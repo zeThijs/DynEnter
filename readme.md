@@ -37,14 +37,14 @@
         It is not mandatory to cordon everything. Un-marked areas are simply skipped in the precompiler and will load at map start.
     Name these cordons something descriptive and give their name the prefix 'DynEnter_',   to mark them for the dynamic spawner.
 <img src="images/setup_overlord.png" data-canonical-src="images/setup_overlord.png" width="600" height="350" />
-    Place a script_logic somewhere in your map, with name DynEnter_overlord. 
-    Create a new keyvalue (disable smartedit, press add) with name 'vscripts' value 'DynEnter/mapname/DynEnter_overlord.nut'
+    Place a script_logic somewhere in your map, with name DynEnter_Overlord. 
+    Create a new keyvalue (disable smartedit, press add) with name 'vscripts' value 'DynEnter/mapname/DynEnter_Overlord.nut'
     mapname will be the second word/title in your map's filename:
         eg: nmo_newyork_v21 would be newyork
 <img src="images/setup_trigger.png" data-canonical-src="images/setup_trigger.png" width="600" height="400" />
 
     In transitions betweens map areas, such as corridors or elevators, create a trigger. Have it output the following:
-    OnTrigger script_logicname StartAreaSpawn_<areaname>()
+    OnTrigger DynEnter_Overlord StartAreaSpawn_<areaname>()
     areaname will be the descriptive cordon name you have made earlier, without the prefix:
         eg: dynspawn_garage would be garage
 
@@ -71,4 +71,4 @@
 
 Some last things worth noting are: 
     You can destroy the entities in the area by calling DestroyEnts_areaname() on the DynEnter_overlord entity.
-    Open vscripts/DynEnter/mapname/DynEnter_overlord.nut , for a list of the generated VScript entities
+    Open vscripts/DynEnter/mapname/DynEnter_Overlord.nut , for a list of the generated VScript entities

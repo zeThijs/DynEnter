@@ -199,7 +199,7 @@ def main(filename):
     #TODO cap cordons as this has infinite filewrite possibility
     
     #file combining all compiled vscript functions into one place
-    out_ol = open(f'{vscriptout_p}/DynEnter_overlord.nut', 'w')
+    out_ol = open(f'{vscriptout_p}/DynEnter_Overlord.nut', 'w')
     out_ol.write(overlord_scriptstr)
     #individual area scriptfiles:
     for index, cordon_info in enumerate(area_info):
