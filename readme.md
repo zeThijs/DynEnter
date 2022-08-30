@@ -1,4 +1,6 @@
-
+## WHAT is this?
+    This script searches through cordons you define, and automatically creates VScript spawn functions for them. These function may then be used to dynamically spawn or despawn dynamic entities in your source map. 
+    It also creates a copy of your vmf, removes the found entities, and feeds this precompiled vmf to vbsp for full compilation.
 
 ## WHY:                         
 <img src="images/itsfree.png" data-canonical-src="images/itsfree.png" width="300" height="250" />
