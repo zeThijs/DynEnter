@@ -20,15 +20,15 @@
         Copy the parameters directory to your nmrih/bin directory
 
 ### 2.  Setup the VMF
-<img src="images/cordoning.png" data-canonical-src="images/cordoning.jpg" width="600" height="600" />
+<img src="images/cordoning.jpg" data-canonical-src="images/cordoning.jpg" width="600" height="400" />
     Make cordons around areas you want to have entities be dynamically loaded.
         It is not mandatory to cordon everything. Un-marked areas are simply skipped in the precompiler and will load at map start.
     Name these cordons something descriptive and give their name the prefix 'DynEnter_',   to mark them for the dynamic spawner.
-<img src="images/setup_overlord.png" data-canonical-src="images/setup_overlord.png" width="600" height="600" />
+<img src="images/setup_overlord.png" data-canonical-src="images/setup_overlord.png" width="600" height="400" />
     Place a script_logic somewhere in your map. Create a new keyvalue (disable smartedit, press add) with name 'vscripts' value 'DyntEnter/<mapname>/DynEnter_overlord.nut'
     mapname will be the second word/title in your map's filename:
         eg: nmo_newyork_v21 would be newyork
-<img src="images/setup_trigger.png" data-canonical-src="images/setup_trigger.png" width="600" height="600" />
+<img src="images/setup_trigger.png" data-canonical-src="images/setup_trigger.png" width="600" height="400" />
 
     In transitions betweens map areas, such as corridors or elevators, create a trigger. Have it output the following:
     OnTrigger script_logicname StartAreaSpawn_<areaname>()
@@ -36,7 +36,7 @@
         eg: dynspawn_garage would be garage
 
 ### 3.  Run precompiler, and compile map
-<img src="images/setup_trigger.png" data-canonical-src="images/setupplug1.png" width="400" height="400" /><img src="images/setup_trigger.png" data-canonical-src="images/setupplug2.png" width="400" height="400" />
+<img src="images/setupplug1.png" data-canonical-src="images/setupplug1.png" width="400" height="300" /><img src="images/setupplug2.png" data-canonical-src="images/setupplug2.png" width="400" height="300" />
         Use the provided CompilePalX plug-in in the compile steps -before- vbsp. It 
         launches DynEnter precompiler which creates a new vmf with entities in areas removed. The entity data is stored into vscript scripts which may later be called ingame to load the entities. The modified vmf is then passed into vbsp and the compilation is continued.
 
@@ -50,4 +50,4 @@
         Trigger your defined triggers. If all goes well you will see 
         entities being loaded in. If nothing happens check if the paths in the trigger output are correct.
 
-<img src="images/demo.gif" data-canonical-src="images/demo.gif" width="400" height="400" />
+<img src="images/demo.gif" data-canonical-src="images/demo.gif" width="600" height="400" />
