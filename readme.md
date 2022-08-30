@@ -37,7 +37,7 @@
         It is not mandatory to cordon everything. Un-marked areas are simply skipped in the precompiler and will load at map start.
     Name these cordons something descriptive and give their name the prefix 'DynEnter_',   to mark them for the dynamic spawner.
 <img src="images/setup_overlord.png" data-canonical-src="images/setup_overlord.png" width="600" height="350" />
-    Place a script_logic somewhere in your map. Create a new keyvalue (disable smartedit, press add) with name 'vscripts' value 'DyntEnter/<mapname>/DynEnter_overlord.nut'
+    Place a script_logic somewhere in your map. Create a new keyvalue (disable smartedit, press add) with name 'vscripts' value 'DynEnter/mapname/DynEnter_overlord.nut'
     mapname will be the second word/title in your map's filename:
         eg: nmo_newyork_v21 would be newyork
 <img src="images/setup_trigger.png" data-canonical-src="images/setup_trigger.png" width="600" height="400" />
@@ -70,4 +70,4 @@
 
 Some last things worth noting are: 
     You can destroy the entities in the area by calling DestroyEnts_areaname() on the DynEnter_overlord entity.
-    Open vscripts/DynEnter/<mapname>/DynEnter_overlord.nut , for a list of the generated VScript entities
+    Open vscripts/DynEnter/mapname/DynEnter_overlord.nut , for a list of the generated VScript entities
