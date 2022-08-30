@@ -1,5 +1,7 @@
 ## WHAT is this?
-    This script searches through cordons you define, and automatically creates VScript spawn functions for them. These function may then be used to dynamically spawn or despawn dynamic entities in your source map. 
+    This script searches through cordons you define, and automatically creates 
+        VScript spawn functions for them. 
+    These function may then be used to dynamically spawn or despawn dynamic entities in your source map.
     It also creates a copy of your vmf, removes the found entities, and feeds this precompiled vmf to vbsp for full compilation.
 
 ## WHY:                         
@@ -9,7 +11,11 @@
     - shorter initial load time
     - free edicts!
 
-    Source has low limits when it comes to dynamic entities count. If one can have dynamic entities unloaded, and load them at points on the map where they are needed you can circumvent these limits. Another benefit is potential performance increases, for clients as well as for servers and shorter initial loading times.
+    Source has low limits when it comes to dynamic entities count. 
+    If one can have dynamic entities unloaded, and load them at points on the map where 
+        they are needed you can circumvent these limits. 
+    Another benefit is potential performance increases, for clients as well as for servers and shorter initial loading times.
+    One negative is possible lag from ingame loading of assets, as i havent implemented precaching as an option yet.
 
 
 ## HOWTO use:
@@ -43,8 +49,10 @@
 
 ### 3.  Run precompiler, and compile map
 <img src="images/setupplug1.png" data-canonical-src="images/setupplug1.png" width="200" height="300" /><img src="images/setupplug2.png" data-canonical-src="images/setupplug2.png" width="200" height="300" />
-        Use the provided CompilePalX plug-in in the compile steps -before- vbsp. It 
-        launches DynEnter precompiler which creates a new vmf with entities in areas removed. The entity data is stored into vscript scripts which may later be called ingame to load the entities. The modified vmf is then passed into vbsp and the compilation is continued.
+        Use the provided CompilePalX plug-in in the compile steps -before- vbsp. 
+        It launches DynEnter precompiler which creates a new vmf with entities in areas removed. 
+        The entity data is stored into vscript scripts which may later be called ingame to load the entities. 
+        The modified vmf is then passed into vbsp and the compilation is continued.
 
 
     You may also manually precompile the map and then compile the processed VMF. It will be
