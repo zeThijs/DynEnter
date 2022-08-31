@@ -1,0 +1,67 @@
+
+
+
+ConVarRef nmrih_ssao_blursharpness doesn't point to an existing ConVar
+materialPath: E:\Games\GamesInstall\SteamLibrary\SteamApps\common\nmrih\nmrih\materials
+Loading E:\Games\GamesInstall\SteamLibrary\SteamApps\common\nmrih\bin\DynEnter\vmfoutput\nmo_brooklyn_2_21.vmf
+Map revision 7579
+Can't find surfaceprop asphalt for material CONCRETE/ROAD01, using default
+Can't find surfaceprop asphalt for material CONCRETE/ROADPARKINGLOT, using default
+Can't find surfaceprop sheetrock for material PLASTER/PLASTER_CEILING_03, using default
+material "concrete/nmrih/concrete/concretefloor001_wet" not found.
+Material not found!: CONCRETE/NMRIH/CONCRETE/CONCRETEFLOOR001_WET
+ConVarRef mat_reduceparticles doesn't point to an existing ConVar
+material "concrete/blendconcdirt004a" not found.
+Material not found!: CONCRETE/BLENDCONCDIRT004A
+Can't find surfaceprop stone for material DE_TIDES/TIDES_BRICK_WALL_G, using default
+Can't find surfaceprop stone for material DE_TIDES/TIDES_BRICK_WALL_I, using default
+material "building_template/building_template028" not found.
+Material not found!: BUILDING_TEMPLATE/BUILDING_TEMPLATE028
+Could not locate 'GameData' key in e:\games\gamesinstall\steamlibrary\steamapps\common\nmrih\nmrih\gameinfo.txt
+Patching WVT material: maps/nmo_brooklyn_2_21/concrete/blendconcretedebris001a_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/nature/blendconcretedirt001a_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/contagion/camp/campblendrockmud_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/nature/blendrockdirt006a_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/concrete/blend_sidewalk_01_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/insertion2/terrain/blend_grass_u_l05_lf02_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/insertion2/terrain/blend_dirt_a_d01_p01_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/insertion2/terrain/blend_dirt_f_d05_l04_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/insertion2/floor/blend_floor_exterior_tarmac_02_03_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/insertion2/terrain/blend_grass_o_s03_lf02_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/insertion2/floor/blend_floor_exterior_tarmac_03_snowpile_wvt_patch
+Patching WVT material: maps/nmo_brooklyn_2_21/insertion2/floor/blend_floor_exterior_tarmac_01_02_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 2036 detail faces...done (1)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (1)
+writing E:\Games\GamesInstall\SteamLibrary\SteamApps\common\nmrih\bin\DynEnter\vmfoutput\nmo_brooklyn_2_21.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (2550023 bytes)
+Error! To use model "models/props/objectives/cj_comp_newmonitor_objective.mdl"
+      with prop_static, it must be compiled with $staticprop!
+Error loading studio model "models/props/objectives/cj_comp_newmonitor_objective.mdl"!
+Error! To use model "models/props_junk/shovel02a.mdl"
+      with prop_static, it must be compiled with $staticprop!
+Error loading studio model "models/props_junk/shovel02a.mdl"!
+Error! To use model "models/props_office/books_1.mdl"
+      with prop_static, it must be compiled with $staticprop!
+Error loading studio model "models/props_office/books_1.mdl"!
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 15721 texinfos to 7075
+Reduced 1047 texdatas to 870 (48632 bytes to 39568)
+Writing E:\Games\GamesInstall\SteamLibrary\SteamApps\common\nmrih\bin\DynEnter\vmfoutput\nmo_brooklyn_2_21.bsp
+Wrote ZIP buffer, estimated size 16791695, actual size 16673829
+16 seconds elapsed
+CMaterialDict::Shutdown m_MissingList count: 3

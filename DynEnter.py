@@ -117,7 +117,7 @@ def main(filename):
             
             area_info[c_id][AreaInfo.area_entcount] += 1
             #adding function wrap around each entity, so they can be spawned in iteratively, with delay
-            str_areafuncs[c_id] += f'function EntSp{area_info[c_id][AreaInfo.name]}_{area_info[c_id][AreaInfo.area_entcount]}(){{'
+            str_areafuncs[c_id] += f'function EntSp_{area_info[c_id][AreaInfo.name]}{area_info[c_id][AreaInfo.area_entcount]}(){{'
             str_areafuncs[c_id] += stringify_entity(entry[1])
             str_areafuncs[c_id] += "}\n\n"
             
@@ -146,7 +146,7 @@ def main(filename):
        #create logic script initialization
         str_areafuncs[c_id] += f'\
 \n\
-\nfunction StartAreaSpawn_{area_info[c_id][AreaInfo.name]}()\
+\nfunction SpawnEnts_{area_info[c_id][AreaInfo.name]}()\
 \n{{\
 \n\tprintcl(100,100,200, "Initializing area {area_info[c_id][AreaInfo.name]} entity spawn..")\n'
         
@@ -154,7 +154,8 @@ def main(filename):
         #the bulk of function calls    
         for i in range(area_info[c_id][AreaInfo.area_entcount]):
             delay = round(i/10.0, 2)
-            ls_str += f'\tEntFireByHandle(self, "RunScriptCode", "SpawnEntity{i}()", {delay}, self, self)\n'
+            index = i+1
+            ls_str += f'\tEntFireByHandle(self, "RunScriptCode", "EntSp_{area_info[c_id][AreaInfo.name]}{index}()", {delay}, self, self)\n'
         #close brackets
         str_areafuncs[c_id] += ls_str + '}'
 
@@ -190,7 +191,7 @@ def main(filename):
     for cordon_info in area_info:   
         overlord_scriptstr += f'\tStartAreaSpawn_{cordon_info[AreaInfo.name]}()\n'
     for index, cordon_info in enumerate(area_info):   
-        overlord_scriptstr += f'\tDestroyEnts_{cordon_info[AreaInfo.name]}(hDynEnterManager)\n'
+        overlord_scriptstr += f'\tDestroyEnts_{cordon_info[AreaInfo.name]}()\n'
         if (index == len(area_info)-1):
             overlord_scriptstr += "*/"
         
