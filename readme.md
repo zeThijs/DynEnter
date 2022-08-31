@@ -48,7 +48,7 @@
 
     In transitions betweens map areas, such as corridors or elevators, create a trigger. 
     Have it output the following:
-    OnTrigger DynEnter_Overlord StartAreaSpawn_<areaname>()
+    OnTrigger DynEnter_Overlord SpawnEnts_<areaname>()
     areaname will be the descriptive cordon name you have made earlier, without the prefix:
         eg: dynspawn_garage would be garage
 
