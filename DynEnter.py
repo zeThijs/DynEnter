@@ -3,6 +3,7 @@ import sys
 import os
 import re
 from enum import IntEnum
+import argparse
 
 #TODO: save cordon information for later vscript use. 
 
@@ -10,7 +11,9 @@ cfg_skip_named_ents  = True #especially important to skip named entities when th
 #cfg_skip_infodecal  = True
 cordonprefix    = "dynenter_"
 
-area_info = []      #result element example:['outside', ['(-4596 -7322 -834)', '(-408 2192 4620.05)', entitycount]
+area_info = []      #area info example: ['outside', ['(-4596 -7322 -834)', '(-408 2192 4620.05)', <entitycount>]
+str_areafuncs = []
+must_precache_mat = [] #If not precached before create, entities using these assets fail to load.
 
 class AreaInfo(IntEnum):
     name = 0
@@ -18,45 +21,66 @@ class AreaInfo(IntEnum):
     max_vec = 2
     area_entcount = 3
 
-str_areafuncs = []
-
 
 classnames = [
     "prop_physics",
     "prop_physics_override",
+    "prop_physics_multiplayer",
     "prop_dynamic",
     "prop_dynamic_override",
     "env_sprite",
     "keyframe_rope",
     "infodecal"
 ]
-
 entfound_count = [0] * len(classnames) #store results based on classnames indexes
 
-must_precache_mat = [] #If not precached before create, entities using these assets fail to load.
+
 
 #find cordons with name DynEnter_*, put name, box in list 
-
-
 #during analyzation of entities, move found entities in cordon groups. If not within cordon, skip entity
-
 #for proper execution, install this in nmrih/bin/dynamicspawns
 
 
-def main(filename):
-    print("Starting precompile DynEnter step.")
 
-    filepath = os.path.dirname(filename)
-    basenamefull = os.path.basename(filename)
-    basename = os.path.basename(filename).split('.')[0].split('_')[1]
-    pythonscriptpath = get_script_path()
-    vmf_outpath = pythonscriptpath + '/vmfoutput'
-    vmf_out = vmf_outpath + '/' + basenamefull
+
+
+
+parser = argparse.ArgumentParser(prog='DynEnter',
+                usage='%(prog)s [-game <game_directory> , -f <vmf_file>]',
+                description='List the content of a folder')
+parser.add_argument('-game',    type=str,           help='game directory')
+parser.add_argument('-file',    type=str,           help='vmf map file to precompile')
+parser.add_argument('-p',       action='store_true',help='[optional] compilepal plugin flag')
+args = parser.parse_args()
+
+
+if not os.path.isdir(args.game): 
+    print("-game directory given does not exist.")
+    sys.exit(1)
+if not os.path.exists(args.game + "/gameinfo.txt"): 
+    print("Game directory given is not root directory. Pass The directory in which gameinfo.txt is found")
+    sys.exit(1)
+if not os.path.exists(args.file): 
+    print("-f vmf file given does not exist.")
+    sys.exit(1)
     
-    nmrihpath = os.path.dirname(os.path.dirname(pythonscriptpath))
-    vscriptpath = nmrihpath + "/nmrih/scripts/vscripts" + '/DynEnter/'
-    vscriptout_p = nmrihpath + "/nmrih/scripts/vscripts" + '/DynEnter/' + basename
-    vscriptout_relativep = 'DynEnter/' + basename
+
+
+
+def main(filename, gamedir, bCompilePal):
+    print("Starting DynEnter precompile.")
+
+    #base vmf name
+    basename = os.path.basename(filename).split('.')[0].split('_')[1]
+
+    #copy and mutate vmf
+    vmf_outpath = os.path.dirname(os.path.realpath(sys.argv[0])) + '/vmfoutput'
+    vmf_out = vmf_outpath + '/' + os.path.basename(filename)    
+    
+    #vscript paths
+    vscriptpath = gamedir + '/scripts/vscripts' + '/dynenter/'
+    vscriptout_p = vscriptpath + basename
+    vscriptout_relativep = 'dynenter/' + basename
   
     
     #create vscript output dir, if not exist
@@ -71,7 +95,9 @@ def main(filename):
     if not os.path.isdir(vmf_outpath): 
         os.mkdir(vmf_outpath)
 
-    print("Finish generating output directories")
+
+
+    print("Finished generating output directories")
     
     #copy input vmf into string variable to remove dynamic-spawnified entities.    
     infile = open(filename, 'r')
@@ -132,6 +158,7 @@ def main(filename):
             
             #find id
             id=getid(entry[1])
+            print("Removing entity id:" + str(id))
             #remove the entity from the input vmf
             vmfstr = remove_entity_file(id, vmfstr)
               
@@ -148,7 +175,7 @@ def main(filename):
 \n\
 \nfunction SpawnEnts_{area_info[c_id][AreaInfo.name]}()\
 \n{{\
-\n\tprintcl(100,100,200, "Initializing area {area_info[c_id][AreaInfo.name]} entity spawn..")\n'
+\n\tprintl("Initializing area {area_info[c_id][AreaInfo.name]} entity spawn..")\n'
         
         ls_str = ""
         #the bulk of function calls    
@@ -220,7 +247,8 @@ def main(filename):
     for index, count in enumerate(entfound_count):
         print(f'{classnames[index]}: {count}')
     
-    print(f'COMPILE_PAL_SET file "{vmf_out}"')
+    if bCompilePal:
+        print(f'COMPILE_PAL_SET file "{vmf_out}"')
 
 
 
@@ -243,7 +271,6 @@ def main(filename):
 
 def remove_entity_file(id, vmfstr):
     r = re.compile('entity\n{\n\t"id" "'+ str(id) +'".*?}\n}', re.DOTALL)
-    #obj = r.search(vmfstr)
     return r.sub('', vmfstr)
 
 #return entity id
@@ -254,12 +281,9 @@ def getid(entity_data):
                 return kv[1]
 
 
-def get_script_path():
-    return os.path.dirname(os.path.realpath(sys.argv[0]))
-
+#evaluate if point lies within x y z min/max points
 def is_inside_cordon(point, boxMins, boxMax):
     
-    #evaluate if point lies within x y or z min/max
     if boxMins[0] >= point[0] or point[0] >= boxMax[0] or        boxMins[1] >= point[1] or point[1] >= boxMax[1] or        boxMins[2] >= point[2] or point[2] >= boxMax[2]:
         return False
     else:    
@@ -273,7 +297,6 @@ def is_inside_cordons(point):
         if is_inside_cordon(point, cordon_info[1], cordon_info[2]):
             return index
     return -1
-
 
 
 #   return the cordon index the entity is in, or -1 if not found
@@ -317,7 +340,11 @@ def stringify_entity(entity_data):
                 entsp_info.append(f'\t{kv[0]} = "{kv[1]}"')
         elif kv[0] == 'connections':
             for conn in kv[1]:
+                #in csgo, these are delimited by an escape character U+001b, for some reason
+                # TODO: parse game name and change delimiter based on that
                 params = conn[1].split(',')
+                if len(params) != 5:
+                    params = conn[1].split('')
                 tierconn += f'e.AddOutput("{conn[0]}", "{params[0]}", "{params[1]}", "{params[2]}", {params[3]}, {params[4]})\n'
 
 
@@ -388,7 +415,7 @@ def index_cordons(cordons_table):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1])
+    main(args.file, args.game, args.p)
 
         
     
