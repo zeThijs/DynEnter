@@ -1,11 +1,11 @@
-# WHAT is this?
+## WHAT is this?
     This script searches through cordons you define, and automatically creates 
         VScript spawn functions for them. 
     These function may then be used to dynamically spawn or despawn dynamic entities in your source map.
     It also creates a copy of your vmf, removes the found entities, and feeds this precompiled vmf 
         to vbsp for full compilation.
 
-# WHY:                         
+## WHY:                         
     - performance
     - shorter initial load time
     - free edicts and circumvent engine limits
@@ -24,7 +24,7 @@
 
 
 
-# HOWTO:
+## HOWTO:
 
 ### 1.  Install the following:
         This precompiler, DynEnter   - 
