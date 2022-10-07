@@ -11,7 +11,7 @@
     - free edicts and circumvent engine limits
 
 <details> 
-  <summary>In depth why</summary>
+  <summary><sub><sup>In depth why</sub></sup></summary>
     Source has low limits when it comes to dynamic entities count. 
     If one can have dynamic entities unloaded, and load them at points on the map where 
         they are needed you can circumvent these limits. 
