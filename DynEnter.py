@@ -1,9 +1,15 @@
-from pyparsing import *
 import sys
-import os
-import re
-from enum import IntEnum
-import argparse
+
+try:
+    print("Using python version:" + sys.version)
+    from pyparsing import *
+    import os
+    import re
+    from enum import IntEnum
+    import argparse
+except Exception as error:
+    print("An error occurred:", error)
+    
 
 #TODO: save cordon information for later vscript use. 
 
@@ -36,7 +42,7 @@ entfound_count = [0] * len(classnames) #store results based on classnames indexe
 
 
 
-#find cordons with name DynEnter_*, put name, box in list 
+#find cordons with name dynenter_*, put name, box in list 
 #during analyzation of entities, move found entities in cordon groups. If not within cordon, skip entity
 #for proper execution, install this in nmrih/bin/dynamicspawns
 
@@ -45,7 +51,7 @@ entfound_count = [0] * len(classnames) #store results based on classnames indexe
 
 
 
-parser = argparse.ArgumentParser(prog='DynEnter',
+parser = argparse.ArgumentParser(prog='dynenter',
                 usage='%(prog)s [-game <game_directory> , -f <vmf_file>]',
                 description='List the content of a folder')
 parser.add_argument('-game',    type=str,           help='game directory')
@@ -61,14 +67,14 @@ if not os.path.exists(args.game + "/gameinfo.txt"):
     print("Game directory given is not root directory. Pass The directory in which gameinfo.txt is found")
     sys.exit(1)
 if not os.path.exists(args.file): 
-    print("-f vmf file given does not exist.")
+    print(f"{args.file} does not exist.")
     sys.exit(1)
     
 
 
 
 def main(filename, gamedir, bCompilePal):
-    print("Starting DynEnter precompile.")
+    print("Starting dynenter precompile.")
 
     #base vmf name
     basename = os.path.basename(filename).split('.')[0].split('_')[1]
@@ -169,7 +175,7 @@ def main(filename, gamedir, bCompilePal):
     #Generate area entity creation function.
     for c_id in range(cordoncount):
        
-        logicscriptname = "DynEnter" + area_info[c_id][AreaInfo.name]
+        logicscriptname = "dynenter" + area_info[c_id][AreaInfo.name]
        #create logic script initialization
         str_areafuncs[c_id] += f'\
 \n\
@@ -227,7 +233,7 @@ def main(filename, gamedir, bCompilePal):
     #TODO cap cordons as this has infinite filewrite possibility
     
     #file combining all compiled vscript functions into one place
-    out_ol = open(f'{vscriptout_p}/DynEnter_Overlord.nut', 'w')
+    out_ol = open(f'{vscriptout_p}/dynenter_overlord.nut', 'w')
     out_ol.write(overlord_scriptstr)
     #individual area scriptfiles:
     for index, cordon_info in enumerate(area_info):
@@ -248,7 +254,8 @@ def main(filename, gamedir, bCompilePal):
         print(f'{classnames[index]}: {count}')
     
     if bCompilePal:
-        print(f'COMPILE_PAL_SET file "{vmf_out}"')
+        vmf_out = os.path.normpath(vmf_out).lower() #mixed slashes in paths break valve compilers ?
+        print(f'COMPILE_PAL_SET file "{vmf_out}"', end="") #IMPORTANT: remember to not print newlines when passing data via stdout!
 
 
 
@@ -305,6 +312,10 @@ def test_entity(entity_data):
     for kv in entity_data:
         if kv[0] == 'classname':
             if kv[1] == '' or not kv[1] in classnames:
+                return -1
+        #skip parented entities
+        if kv[0] == 'parentname':
+            if kv[1] != '':
                 return -1
 
         if isinstance(kv[1], str):

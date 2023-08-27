@@ -66,6 +66,7 @@
 <details> 
     <summary><sub><sup>trigger example</sup></sub></summary>
    <img src="images/setup_trigger.png" data-canonical-src="images/setup_trigger.png" width="600" height="400" />
+    Note: picture has incorrect prefix: should be SpawnEnts_
 </details>
 
 ### 3.  Run precompiler, and compile map
